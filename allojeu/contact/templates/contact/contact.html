@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form method="post" action="{% url 'contact' %}">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit" value="contact">Send message</button>
+        <input type="hidden">
+    </form>
+
+    <a href="/accounts/logout">Logout</a>
+
+
+{% endblock %}

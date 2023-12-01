@@ -1,0 +1,45 @@
+{% extends 'base.html'%}
+
+{%block content%}
+        {% if jeu %}
+            <h1>{{ jeu.name }}</h1>
+            <p>{{ jeu.description }}</p>
+            <p>{{ jeu.date }}</p>
+            <p>{{ jeu.note }}</p>
+            <a href="/jv.com/">retour</a>
+        {% else %}
+            <p>Aucun article disponible.</p>
+        {% endif %}
+        {% if avis %}
+        {% for post in avis %}
+            <li>
+                <h3>{{ post.author }}</h3>
+                <p>{{ post.avis }}</p>
+                <p>{{ post.note }}</p>
+                {% if user.is_authenticated %}
+                    {% if user == post.author %}
+                        <form action="{% url 'supprimer_post' post.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Supprimer</button>
+                        </form>
+                    {% endif %}
+                {% endif %}
+            </li>
+        {% endfor %}
+        {% else %}
+            <p>Aucun avis</p>
+        {% endif %}
+        {% if user.is_authenticated %}
+            <p>Bienvenue, {{ user.username }}!</p>
+            <p>Donnez votre avis!>
+            <form action="{% url 'details_jeu' jeu_id%}" method="post"><!--  -->
+                {% csrf_token %}
+                {{PostForm.as_p}}
+                <input type="submit" value="Soumettre">
+            </form>
+        {% else %}
+            <p>Veuillez vous connecter pour commenter.</p>
+            <a href="{% url 'login' %}" >login</a>
+        {% endif %}
+
+{%endblock%}

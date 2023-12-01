@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+
+{%block content%}
+    
+    <form method="get" action="{% url 'liste_jeux' %}">
+        {{ formulaire_recherche.as_p }}
+        <button type="submit">Rechercher</button>
+    </form>
+    <h1>Liste Jeux</h1>
+    {% if jeux %}
+        <ul>
+            {% for jeu in jeux %}
+                <li>
+                    <h2>{{ jeu.name }}</h2>
+                    <p>{{ jeu.description }}</p>
+                    <p>{{ jeu.date }}</p>
+                    <p>{{ jeu.note }}</p>
+                    <a href="{% url 'details_jeu' jeu.id%}">Voir plus</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun jeu disponible.</p>
+    {% endif %}
+{%endblock%}
