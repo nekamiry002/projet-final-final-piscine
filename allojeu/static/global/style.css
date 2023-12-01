@@ -34,6 +34,7 @@ ul li {
     border-radius: 5px;
     padding: 10px;
     transition: background 0.2s;
+    width: 15%;
 }
 
 ul li a {
@@ -93,6 +94,7 @@ ul {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 ul li.cart-icon {
@@ -112,4 +114,10 @@ ul li.cart-icon {
     100% {
         top: 15px;
     }
+}
+
+.tous_les_jeux ul{
+    display: flex;
+    max-width: 100%;
+    flex-wrap: wrap;
 }

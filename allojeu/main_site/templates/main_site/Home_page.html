@@ -3,7 +3,7 @@
 {%block content%} 
     {% if nouveautes %}
         <h1>Nouveautes !</h1>
-        <ul>
+        <ul id="nouveau">
             {% for jeu in nouveautes %}
                 <li>
                     <h2>{{ jeu.name }}</h2>
@@ -20,17 +20,19 @@
 
     {% if jeux %}
         <h2>Autres jeux</h2>
-        <ul>
-            {% for jeu in jeux %}
-                <li>
-                    <h2>{{ jeu.name }}</h2>
-                    <p>{{ jeu.description }}</p>
-                    <p>{{ jeu.date }}</p>
-                    <p>{{ jeu.note }}</p>
-                    <a href="{% url 'details_jeu' jeu.id%}">Voir plus</a>
-                </li>
-            {% endfor %}
-        </ul>
+        <div id="tous_les_jeux">
+            <ul >
+                {% for jeu in jeux %}
+                    <li>
+                        <h2>{{ jeu.name }}</h2>
+                        <p>{{ jeu.description }}</p>
+                        <p>{{ jeu.date }}</p>
+                        <p>{{ jeu.note }}</p>
+                        <a href="{% url 'details_jeu' jeu.id%}">Voir plus</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     {% else %}
         <p>Aucun jeu disponible.</p>
     {% endif %}
