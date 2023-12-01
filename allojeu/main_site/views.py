@@ -26,7 +26,7 @@ class Liste_jeux(View):
 
             date = formulaire_recherche.cleaned_data['date']
             if date == None:
-                resultats = Jeux.objects.all()
+                resultats = Jeux.objects.filter(name__icontains=recherche)
             else:
                 resultats = Jeux.objects.filter(date__gt=date).filter(name__icontains=recherche)
 
